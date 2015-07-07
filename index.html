@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>Better APIS and smarter AIs</title>
+  <title>Better APIs and smarter AIs</title>
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,900,700,500' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="theme/font-awesome.css">
   <style type="text/css">
@@ -564,11 +564,33 @@ ul {
 <h2 id="yycjs-summer-finale">YYCJS summer finale</h2>
 </section>
   </div>
-  <div class="slide hidden" id="slide-2">
+  <div class="slide hidden  sponsors" id="slide-2">
+    <section class="slide-content"><h1 id="our-sponsors">Our Sponsors</h1>
+<p><img src="img/sponsors/assembly_logo.png" alt="Assembly"></p>
+<p><img src="img/sponsors/village_brewery_logo.png" alt="Village Brewery"></p>
+<p><img src="img/sponsors/startup_calgary_logo.png" alt="Startup Calgary"></p>
+<p><img src="img/sponsors/petrofeed_logo.png" alt="PetroFeed"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h1 id="this-year">This year</h1>
+<ul>
+<li><a href="http://www.meetup.com/yyc-js/events/222682792/">9 years of JavaScript</a></li>
+<li><a href="http://www.meetup.com/yyc-js/events/221664814/">React in the real world</a></li>
+<li><a href="http://www.meetup.com/yyc-js/events/221663824/">Modular JavaScript &amp; ArangoDB</a></li>
+<li><a href="http://www.meetup.com/yyc-js/events/221583296/">Ruby vs. JS - Building an API and making it real-time</a></li>
+<li><a href="http://www.meetup.com/yyc-js/events/220713495/">The perfect JavaScript project</a></li>
+<li><a href="http://www.meetup.com/yyc-js/events/220256403/">Learning JavaScript</a></li>
+<li><a href="http://www.meetup.com/yyc-js/events/220071200/">HTML500</a></li>
+<li><a href="http://www.meetup.com/yyc-js/events/219630216/">Back to the future</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
     <section class="slide-content"><h1 id="brought-to-you-by">Brought to you by</h1>
 </section>
   </div>
-  <div class="slide hidden  presenter" id="slide-3">
+  <div class="slide hidden  presenter" id="slide-5">
     <section class="slide-content"><p><img src="http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200" alt="David Luecke"></p>
 <h2 id="david-luecke">David Luecke</h2>
 <ul>
@@ -577,7 +599,7 @@ ul {
 </ul>
 </section>
   </div>
-  <div class="slide hidden  presenter" id="slide-4">
+  <div class="slide hidden  presenter" id="slide-6">
     <section class="slide-content"><p><img src="http://gravatar.com/avatar/23aba778a7daae99348aeb0728cf4aec?s=200" alt="Eric Kryski"></p>
 <h2 id="eric-kryski">Eric Kryski</h2>
 <ul>
@@ -587,29 +609,62 @@ ul {
 </ul>
 </section>
   </div>
-  <div class="slide hidden  sponsors" id="slide-5">
-    <section class="slide-content"><h1 id="our-sponsors">Our Sponsors</h1>
-<p><img src="img/sponsors/assembly_logo.png" alt="Assembly"></p>
-<p><img src="img/sponsors/village_brewery_logo.png" alt="Village Brewery"></p>
-<p><img src="img/sponsors/startup_calgary_logo.png" alt="Startup Calgary"></p>
-<p><img src="img/sponsors/petrofeed_logo.png" alt="PetroFeed"></p>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-6">
-    <section class="slide-content"><h1 id="last-month">Last Month</h1>
-<ul>
-<li>Something awesome</li>
-<li>More awesomeness</li>
-</ul>
-</section>
-  </div>
   <div class="slide hidden" id="slide-7">
-    <section class="slide-content"><h1 id="next-month">Next Month</h1>
-<ul>
-<li>Something awesome</li>
-<li>More awesomeness</li>
-</ul>
+    <section class="slide-content"><h1 id="feathers">Feathers</h1>
 </section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h2 id="a-rest-and-real-time-api-mongodb">A REST and real-time API + MongoDB</h2>
+<p>10 lines, no generators, no magic</p>
+<pre><code class="lang-javascript"><span class="comment">// npm install feathers feathers-mongodb body-parser</span>
+<span class="keyword">var</span> feathers = require(<span class="string">'feathers'</span>);
+<span class="keyword">var</span> bodyParser = require(<span class="string">'body-parser'</span>);
+<span class="keyword">var</span> mongodb = require(<span class="string">'feathers-mongodb'</span>);
+
+<span class="keyword">var</span> app = feathers()
+  .configure(feathers.rest())
+  .configure(feathers.socketio())
+  .use(bodyParser.json())
+  .use(feathers.static(__dirname))
+  .use(<span class="string">'/todos'</span>, mongodb({
+    collection: <span class="string">'todos'</span>
+  }));
+
+app.listen(<span class="number">8080</span>);
+
+app.service(<span class="string">'todos'</span>).create({
+  text: <span class="string">'A Todo created on the server'</span>
+  complete: <span class="literal">false</span>
+});</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h2 id="client-use">Client use</h2>
+<p><a href="">feathers-client</a> is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS server, with libraries like <a href="">jQuery</a> or client side frameworks like <a href="">React</a>, <a href="">Angular</a> or <a href="">CanJS</a>:</p>
+<pre><code class="lang-javascript">&lt;script src=<span class="string">"socket.io/socket.io.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"node_modules/feathers-client/dist/feathers.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+  <span class="keyword">var</span> socket = io();
+  <span class="keyword">var</span> app = feathers().configure(feathers.socketio(socket));
+  <span class="keyword">var</span> todos = app.service(<span class="string">'todos'</span>);
+
+  todos.on(<span class="string">'created'</span>, <span class="keyword">function</span>(todo) {
+    console.log(<span class="string">'New Todo created: '</span> + todo.text);
+  });
+
+  todos.create({
+    text: <span class="string">'Todo created on the client'</span>,
+    complete: <span class="literal">false</span>
+  });
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h1 id="demo-real-time-todos-with-feathers-react">Demo: Real-time Todos with Feathers + React</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"></section>
   </div>
 
 
