@@ -573,7 +573,12 @@ ul {
 </section>
   </div>
   <div class="slide hidden" id="slide-3">
-    <section class="slide-content"><h1 id="this-year">This year</h1>
+    <section class="slide-content"><h2 id="how-it-all-began-https-groups-google-com-forum-topic-nodejs-e-uruzfyo98-">How it all <a href="https://groups.google.com/forum/#!topic/nodejs/E-uRuZfyo98">began</a>...</h2>
+<p><img src="img/beginning.png" alt="The beginning of YYCJS" style="width: 50%; margin: 0 auto; display: block;"></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h2 id="this-year">This year</h2>
 <ul>
 <li><a href="http://www.meetup.com/yyc-js/events/222682792/">9 years of JavaScript</a></li>
 <li><a href="http://www.meetup.com/yyc-js/events/221664814/">React in the real world</a></li>
@@ -586,11 +591,11 @@ ul {
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-4">
+  <div class="slide hidden" id="slide-5">
     <section class="slide-content"><h1 id="brought-to-you-by">Brought to you by</h1>
 </section>
   </div>
-  <div class="slide hidden  presenter" id="slide-5">
+  <div class="slide hidden  presenter" id="slide-6">
     <section class="slide-content"><p><img src="http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200" alt="David Luecke"></p>
 <h2 id="david-luecke">David Luecke</h2>
 <ul>
@@ -599,7 +604,7 @@ ul {
 </ul>
 </section>
   </div>
-  <div class="slide hidden  presenter" id="slide-6">
+  <div class="slide hidden  presenter" id="slide-7">
     <section class="slide-content"><p><img src="http://gravatar.com/avatar/23aba778a7daae99348aeb0728cf4aec?s=200" alt="Eric Kryski"></p>
 <h2 id="eric-kryski">Eric Kryski</h2>
 <ul>
@@ -609,11 +614,11 @@ ul {
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-7">
+  <div class="slide hidden" id="slide-8">
     <section class="slide-content"><h1 id="feathers">Feathers</h1>
 </section>
   </div>
-  <div class="slide hidden" id="slide-8">
+  <div class="slide hidden" id="slide-9">
     <section class="slide-content"><h2 id="a-rest-and-real-time-api-mongodb">A REST and real-time API + MongoDB</h2>
 <p>10 lines, no generators, no magic</p>
 <pre><code class="lang-javascript"><span class="comment">// npm install feathers feathers-mongodb body-parser</span>
@@ -638,9 +643,33 @@ app.service(<span class="string">'todos'</span>).create({
 });</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-9">
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h2 id="services">Services</h2>
+<pre><code class="lang-javascript"><span class="keyword">var</span> feathers = require(<span class="string">'feathers'</span>);
+
+<span class="keyword">var</span> app = feathers()
+  .configure(feathers.rest())
+  .configure(feathers.socketio())
+  .use(<span class="string">'/todos'</span>, {
+    <span class="comment">// GET /todos | socket.emit('todos::find')</span>
+    find: <span class="keyword">function</span>(params, callback) {},
+    <span class="comment">// GET /todos/:id | socket.emit('todos::get')</span>
+    get: <span class="keyword">function</span>(id, params, callback) {},
+    <span class="comment">// POST /todos | socket.emit('todos::create')</span>
+    create: <span class="keyword">function</span>(data, params, callback) {},
+    <span class="comment">// PUT /todos/:id | socket.emit('todos::update')</span>
+    update: <span class="keyword">function</span>(id, data, params, callback) {},
+    <span class="comment">// PATCH /todos/:id | socket.emit('todos::patch')</span>
+    patch: <span class="keyword">function</span>(id, data, params, callback) {},
+    <span class="comment">// DELETE /todos/:id | socket.emit('todos::remove')</span>
+    remove: <span class="keyword">function</span>(id, params, callback) {}
+  }).use(<span class="string">'/'</span>, express.static(__dirname));
+app.listen(<span class="number">3000</span>);</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
     <section class="slide-content"><h2 id="client-use">Client use</h2>
-<p><a href="">feathers-client</a> is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS server, with libraries like <a href="">jQuery</a> or client side frameworks like <a href="">React</a>, <a href="">Angular</a> or <a href="">CanJS</a>:</p>
+<p><a href="">feathers-client</a> is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS servers, with libraries like <a href="">jQuery</a> or client side frameworks like <a href="">React</a>, <a href="">Angular</a> or <a href="">CanJS</a>:</p>
 <pre><code class="lang-javascript">&lt;script src=<span class="string">"socket.io/socket.io.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"node_modules/feathers-client/dist/feathers.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
@@ -659,12 +688,71 @@ app.service(<span class="string">'todos'</span>).create({
 </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-10">
-    <section class="slide-content"><h1 id="demo-real-time-todos-with-feathers-react">Demo: Real-time Todos with Feathers + React</h1>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h2 id="real-time-proxy-for-existing-apis">Real-time proxy for existing APIs</h2>
+<p><img src="img/real-time-proxy.png" alt="Real time proxy" style="width: 80%; margin: 0 auto; display: block;"></p>
 </section>
   </div>
-  <div class="slide hidden" id="slide-11">
-    <section class="slide-content"></section>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h1 id="demo-react-real-time-todos">Demo: React real-time Todos</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h1 id="demo-android-and-ios-real-time-todos">Demo: Android and iOS real-time Todos</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h1 id="so-what-will-the-future-be-like-">So what will the future be like?</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><p><img style="width: 40%; display: block; margin: 0 auto;" alt="Grace Hopper" src="img/grace-hopper.jpg" /></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h2 id="cobol-1959-">COBOL (1959)</h2>
+<pre><code>DISPLAY &quot;Enter First Number      : &quot; WITH NO ADVANCING
+ACCEPT Num1
+DISPLAY &quot;Enter Second Number     : &quot; WITH NO ADVANCING
+ACCEPT Num2
+DISPLAY &quot;Enter operator (+ or *) : &quot; WITH NO ADVANCING
+ACCEPT Operator
+IF Operator = &quot;+&quot; THEN
+  ADD Num1, Num2 GIVING Result
+END-IF
+IF Operator = &quot;*&quot; THEN
+  MULTIPLY Num1 BY Num2 GIVING Result
+END-IF
+DISPLAY &quot;Result is = &quot;, Result</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h2 id="javascript-es6-2015-">JavaScript/ES6 (2015)</h2>
+<pre><code class="lang-javascript">import readline from <span class="string">'readline'</span>;
+
+<span class="keyword">const</span> rl = readline.createInterface({
+  input: process.stdin, output: process.stdout
+});
+
+rl.question(<span class="string">"Enter First Number"</span>, num1 =&gt; {
+  num1 = parseInt(num1, <span class="number">10</span>);
+  rl.question(<span class="string">"Enter Second Number"</span>, num2 =&gt; {
+    num2 = parseInt(num2, <span class="number">10</span>);
+    rl.question(<span class="string">"Enter Operator (+ or *)"</span>, operator =&gt; {
+      <span class="keyword">let</span> result = -<span class="number">1</span>;
+
+      <span class="keyword">if</span>(operator === <span class="string">'*'</span>) {
+        result = num1 * num2;
+      } <span class="keyword">else</span> <span class="keyword">if</span>(operator === <span class="string">'+'</span>) {
+        result = num1 + num2;
+      }
+
+      console.log(<span class="string">'Result is = '</span> + result);
+      rl.close();
+    });
+  });
+});</code></pre>
+</section>
   </div>
 
 

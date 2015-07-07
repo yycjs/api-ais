@@ -24,7 +24,13 @@ logo: theme/logo.png
 
 --
 
-# This year
+## How it all [began](https://groups.google.com/forum/#!topic/nodejs/E-uRuZfyo98)...
+
+<img src="img/beginning.png" alt="The beginning of YYCJS" style="width: 50%; margin: 0 auto; display: block;">
+
+--
+
+## This year
 
 * [9 years of JavaScript](http://www.meetup.com/yyc-js/events/222682792/)
 * [React in the real world](http://www.meetup.com/yyc-js/events/221664814/)
@@ -93,9 +99,36 @@ app.service('todos').create({
 
 --
 
+## Services
+
+```javascript
+var feathers = require('feathers');
+
+var app = feathers()
+  .configure(feathers.rest())
+  .configure(feathers.socketio())
+  .use('/todos', {
+    // GET /todos | socket.emit('todos::find')
+    find: function(params, callback) {},
+    // GET /todos/:id | socket.emit('todos::get')
+    get: function(id, params, callback) {},
+    // POST /todos | socket.emit('todos::create')
+    create: function(data, params, callback) {},
+    // PUT /todos/:id | socket.emit('todos::update')
+    update: function(id, data, params, callback) {},
+    // PATCH /todos/:id | socket.emit('todos::patch')
+    patch: function(id, data, params, callback) {},
+    // DELETE /todos/:id | socket.emit('todos::remove')
+    remove: function(id, params, callback) {}
+  }).use('/', express.static(__dirname));
+app.listen(3000);
+```
+
+--
+
 ## Client use
 
-[feathers-client]() is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS server, with libraries like [jQuery]() or client side frameworks like [React](), [Angular]() or [CanJS]():
+[feathers-client]() is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS servers, with libraries like [jQuery]() or client side frameworks like [React](), [Angular]() or [CanJS]():
 
 ```javascript
 <script src="socket.io/socket.io.js"></script>
@@ -118,6 +151,73 @@ app.service('todos').create({
 
 --
 
-# Demo: Real-time Todos with Feathers + React
+## Real-time proxy for existing APIs
+
+<img src="img/real-time-proxy.png" alt="Real time proxy" style="width: 80%; margin: 0 auto; display: block;">
 
 --
+
+# Demo: React real-time Todos
+
+--
+
+# Demo: Android and iOS real-time Todos
+
+--
+
+# So what will the future be like?
+
+--
+
+<img style="width: 40%; display: block; margin: 0 auto;" alt="Grace Hopper" src="img/grace-hopper.jpg" />
+
+--
+
+## COBOL (1959)
+
+```
+DISPLAY "Enter First Number      : " WITH NO ADVANCING
+ACCEPT Num1
+DISPLAY "Enter Second Number     : " WITH NO ADVANCING
+ACCEPT Num2
+DISPLAY "Enter operator (+ or *) : " WITH NO ADVANCING
+ACCEPT Operator
+IF Operator = "+" THEN
+  ADD Num1, Num2 GIVING Result
+END-IF
+IF Operator = "*" THEN
+  MULTIPLY Num1 BY Num2 GIVING Result
+END-IF
+DISPLAY "Result is = ", Result
+```
+
+--
+
+## JavaScript/ES6 (2015)
+
+```javascript
+import readline from 'readline';
+
+const rl = readline.createInterface({
+  input: process.stdin, output: process.stdout
+});
+
+rl.question("Enter First Number", num1 => {
+  num1 = parseInt(num1, 10);
+  rl.question("Enter Second Number", num2 => {
+    num2 = parseInt(num2, 10);
+    rl.question("Enter Operator (+ or *)", operator => {
+      let result = -1;
+
+      if(operator === '*') {
+        result = num1 * num2;
+      } else if(operator === '+') {
+        result = num1 + num2;
+      }
+
+      console.log('Result is = ' + result);
+      rl.close();
+    });
+  });
+});
+```
