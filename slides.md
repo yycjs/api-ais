@@ -1,4 +1,4 @@
-title: YYCjs Slides
+title: Better APIS and smarter AIs
 output: index.html
 theme: theme
 controls: false
@@ -6,17 +6,9 @@ logo: theme/logo.png
 
 --
 
-# YYC.js Presents
+# Better APIs and smarter AIs
 
-## An Epic Slide Template
-
-### That totally kicks some ass
-
-#### Kind of like Chuck Norris
-
-##### And Jackie Chan
-
-Maybe even Chris Rock
+## YYCJS summer finale
 
 --
 
