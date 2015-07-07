@@ -552,6 +552,18 @@ ul {
   display: table-cell;
 }
 
+.centered {
+  text-align: center;
+}
+
+code, pre {
+  border: none;
+}
+
+pre {
+  font-size: 70%;
+}
+
   </style>
 </head>
 <body>
@@ -596,11 +608,11 @@ ul {
 </section>
   </div>
   <div class="slide hidden  presenter" id="slide-6">
-    <section class="slide-content"><p><img src="http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200" alt="David Luecke"></p>
-<h2 id="david-luecke">David Luecke</h2>
+    <section class="slide-content"><p><img src="https://avatars0.githubusercontent.com/u/7315?v=3&amp;s=200" alt="Cory Smith"></p>
+<h2 id="cory-smith">Cory Smith</h2>
 <ul>
-<li><a href="https://github.com/daffl"><i class="fa fa-github"></i> daffl</a></li>
-<li><a href="http://twitter.com/daffl"><i class="fa fa-twitter"></i> @daffl</a></li>
+<li><a href="https://github.com/corymsmith"><i class="fa fa-github"></i> corymsmith</a></li>
+<li><a href="http://twitter.com/smixx"><i class="fa fa-twitter"></i> @smixx</a></li>
 </ul>
 </section>
   </div>
@@ -614,12 +626,70 @@ ul {
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-8">
-    <section class="slide-content"><h1 id="feathers">Feathers</h1>
+  <div class="slide hidden  presenter" id="slide-8">
+    <section class="slide-content"><p><img src="http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200" alt="David Luecke"></p>
+<h2 id="david-luecke">David Luecke</h2>
+<ul>
+<li><a href="https://github.com/daffl"><i class="fa fa-github"></i> daffl</a></li>
+<li><a href="http://twitter.com/daffl"><i class="fa fa-twitter"></i> @daffl</a></li>
+</ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-9">
-    <section class="slide-content"><h2 id="a-rest-and-real-time-api-mongodb">A REST and real-time API + MongoDB</h2>
+  <div class="slide hidden  presenter" id="slide-9">
+    <section class="slide-content"><p><img src="http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200" alt="SAM"></p>
+<h2 id="sam">SAM</h2>
+<ul>
+<li><a href="https://github.com/daffl/samjs.ai"><i class="fa fa-github"></i> daffl/samjs.ai</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden  centered" id="slide-10">
+    <section class="slide-content"><h2 id="-feathers-logo-img-feathers-logo-png-http-feathersjs-com-"><a href="http://feathersjs.com"><img src="img/feathers-logo.png" alt="Feathers logo"></a></h2>
+<h2 id="-brainjs-https-github-com-harthur-brain-"><a href="https://github.com/harthur/brain">BrainJS</a></h2>
+<h2 id="-node-natural-https-github-com-naturalnode-natural-"><a href="https://github.com/NaturalNode/natural">node-natural</a></h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h2 id="express">Express</h2>
+<pre><code class="lang-javascript"><span class="comment">// npm install express body-parser</span>
+<span class="keyword">var</span> express = require(<span class="string">'express'</span>);
+<span class="keyword">var</span> bodyParser = require(<span class="string">'body-parser'</span>);
+
+<span class="keyword">var</span> app = express()
+  .use(bodyParser.json())
+  .use(<span class="string">'/'</span>, express.static(__dirname))
+  .post(<span class="string">'/todos'</span>, <span class="keyword">function</span>(req, res, next) {
+    <span class="keyword">var</span> todo = req.body;
+    res.json(todo);
+  });
+
+app.listen(<span class="number">8080</span>);</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h2 id="feathers-services">Feathers Services</h2>
+<pre><code class="lang-javascript"><span class="keyword">var</span> feathers = require(<span class="string">'feathers'</span>);
+<span class="keyword">var</span> bodyParser = require(<span class="string">'body-parser'</span>);
+
+<span class="keyword">var</span> app = feathers()
+  .use(bodyParser.json())
+  .use(<span class="string">'/'</span>, feathers.static(__dirname))
+  .configure(feathers.rest())
+  .configure(feathers.socketio())
+  .use(<span class="string">'/todos'</span>, {
+    find: <span class="keyword">function</span>(params, callback) {},
+    get: <span class="keyword">function</span>(id, params, callback) {},
+    create: <span class="keyword">function</span>(data, params, callback) {},
+    update: <span class="keyword">function</span>(id, data, params, callback) {},
+    patch: <span class="keyword">function</span>(id, data, params, callback) {},
+    remove: <span class="keyword">function</span>(id, params, callback) {}
+  });
+
+app.listen(<span class="number">8080</span>);</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h2 id="a-mongodb-rest-and-real-time-api">A MongoDB REST and real-time API</h2>
 <p>10 lines, no generators, no magic</p>
 <pre><code class="lang-javascript"><span class="comment">// npm install feathers feathers-mongodb body-parser</span>
 <span class="keyword">var</span> feathers = require(<span class="string">'feathers'</span>);
@@ -643,34 +713,11 @@ app.service(<span class="string">'todos'</span>).create({
 });</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-10">
-    <section class="slide-content"><h2 id="services">Services</h2>
-<pre><code class="lang-javascript"><span class="keyword">var</span> feathers = require(<span class="string">'feathers'</span>);
-
-<span class="keyword">var</span> app = feathers()
-  .configure(feathers.rest())
-  .configure(feathers.socketio())
-  .use(<span class="string">'/todos'</span>, {
-    <span class="comment">// GET /todos | socket.emit('todos::find')</span>
-    find: <span class="keyword">function</span>(params, callback) {},
-    <span class="comment">// GET /todos/:id | socket.emit('todos::get')</span>
-    get: <span class="keyword">function</span>(id, params, callback) {},
-    <span class="comment">// POST /todos | socket.emit('todos::create')</span>
-    create: <span class="keyword">function</span>(data, params, callback) {},
-    <span class="comment">// PUT /todos/:id | socket.emit('todos::update')</span>
-    update: <span class="keyword">function</span>(id, data, params, callback) {},
-    <span class="comment">// PATCH /todos/:id | socket.emit('todos::patch')</span>
-    patch: <span class="keyword">function</span>(id, data, params, callback) {},
-    <span class="comment">// DELETE /todos/:id | socket.emit('todos::remove')</span>
-    remove: <span class="keyword">function</span>(id, params, callback) {}
-  }).use(<span class="string">'/'</span>, express.static(__dirname));
-app.listen(<span class="number">3000</span>);</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-11">
+  <div class="slide hidden" id="slide-14">
     <section class="slide-content"><h2 id="client-use">Client use</h2>
-<p><a href="">feathers-client</a> is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS servers, with libraries like <a href="">jQuery</a> or client side frameworks like <a href="">React</a>, <a href="">Angular</a> or <a href="">CanJS</a>:</p>
-<pre><code class="lang-javascript">&lt;script src=<span class="string">"socket.io/socket.io.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<p><a href="https://github.com/feathersjs/feathers-client">feathers-client</a> is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS servers, with libraries like <a href="http://feathersjs.github.io/todomvc/feathers/jquery/#/all">jQuery</a> or client side frameworks like React, Angular or CanJS:</p>
+<pre><code class="lang-javascript">&lt;script src=<span class="string">"https://code.jquery.com/jquery-2.1.4.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"socket.io/socket.io.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 <span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"node_modules/feathers-client/dist/feathers.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
 <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
   <span class="keyword">var</span> socket = io();
@@ -688,28 +735,32 @@ app.listen(<span class="number">3000</span>);</code></pre>
 </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-12">
+  <div class="slide hidden  centered" id="slide-15">
     <section class="slide-content"><h2 id="real-time-proxy-for-existing-apis">Real-time proxy for existing APIs</h2>
-<p><img src="img/real-time-proxy.png" alt="Real time proxy" style="width: 80%; margin: 0 auto; display: block;"></p>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-13">
-    <section class="slide-content"><h1 id="demo-react-real-time-todos">Demo: React real-time Todos</h1>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-14">
-    <section class="slide-content"><h1 id="demo-android-and-ios-real-time-todos">Demo: Android and iOS real-time Todos</h1>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-15">
-    <section class="slide-content"><h1 id="so-what-will-the-future-be-like-">So what will the future be like?</h1>
+<p><img src="img/real-time-proxy.png" alt="Real time proxy" style="width: 80%;"></p>
 </section>
   </div>
   <div class="slide hidden" id="slide-16">
-    <section class="slide-content"><p><img style="width: 40%; display: block; margin: 0 auto;" alt="Grace Hopper" src="img/grace-hopper.jpg" /></p>
+    <section class="slide-content"><h1 id="demo-react-real-time-todos">Demo: React real-time Todos</h1>
 </section>
   </div>
   <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h1 id="demo-android-and-ios-real-time-todos">Demo: Android and iOS real-time Todos</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h1 id="demo-a-voice-controlled-shopping-list">Demo: A voice controlled shopping list</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h1 id="programming-the-future">Programming the future</h1>
+</section>
+  </div>
+  <div class="slide hidden  centered" id="slide-20">
+    <section class="slide-content"><p><img style="width: 40%;" alt="Grace Hopper" src="img/grace-hopper.jpg" /></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
     <section class="slide-content"><h2 id="cobol-1959-">COBOL (1959)</h2>
 <pre><code>DISPLAY &quot;Enter First Number      : &quot; WITH NO ADVANCING
 ACCEPT Num1
@@ -726,7 +777,7 @@ END-IF
 DISPLAY &quot;Result is = &quot;, Result</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-18">
+  <div class="slide hidden" id="slide-22">
     <section class="slide-content"><h2 id="javascript-es6-2015-">JavaScript/ES6 (2015)</h2>
 <pre><code class="lang-javascript">import readline from <span class="string">'readline'</span>;
 
@@ -752,6 +803,10 @@ rl.question(<span class="string">"Enter First Number"</span>, num1 =&gt; {
     });
   });
 });</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h1 id="more-teaching-less-coding-">More teaching. Less coding.</h1>
 </section>
   </div>
 

@@ -155,3 +155,15 @@ ul {
   margin: 20px auto;
   display: table-cell;
 }
+
+.centered {
+  text-align: center;
+}
+
+code, pre {
+  border: none;
+}
+
+pre {
+  font-size: 70%;
+}

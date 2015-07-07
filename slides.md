@@ -47,12 +47,12 @@ logo: theme/logo.png
 
 -- presenter
 
-![David Luecke](http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200)
+![Cory Smith](https://avatars0.githubusercontent.com/u/7315?v=3&s=200)
 
-## David Luecke
+## Cory Smith
 
-* [<i class="fa fa-github"></i> daffl](https://github.com/daffl)
-* [<i class="fa fa-twitter"></i> @daffl](http://twitter.com/daffl)
+* [<i class="fa fa-github"></i> corymsmith](https://github.com/corymsmith)
+* [<i class="fa fa-twitter"></i> @smixx](http://twitter.com/smixx)
 
 -- presenter
 
@@ -64,13 +64,79 @@ logo: theme/logo.png
 * [<i class="fa fa-twitter"></i> @ekryski](http://twitter.com/ekryski)
 * [<i class="fa fa-home"></i> erickryski.com](http://erickryski.com)
 
+-- presenter
+
+![David Luecke](http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200)
+
+## David Luecke
+
+* [<i class="fa fa-github"></i> daffl](https://github.com/daffl)
+* [<i class="fa fa-twitter"></i> @daffl](http://twitter.com/daffl)
+
+-- presenter
+
+![SAM](http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200)
+
+## SAM
+
+* [<i class="fa fa-github"></i> daffl/samjs.ai](https://github.com/daffl/samjs.ai)
+
+-- centered
+
+## [![Feathers logo](img/feathers-logo.png)](http://feathersjs.com)
+
+## [BrainJS](https://github.com/harthur/brain)
+
+## [node-natural](https://github.com/NaturalNode/natural)
+
 --
 
-# Feathers
+## Express
+
+```javascript
+// npm install express body-parser
+var express = require('express');
+var bodyParser = require('body-parser');
+
+var app = express()
+  .use(bodyParser.json())
+  .use('/', express.static(__dirname))
+  .post('/todos', function(req, res, next) {
+    var todo = req.body;
+    res.json(todo);
+  });
+
+app.listen(8080);
+```
 
 --
 
-## A REST and real-time API + MongoDB
+## Feathers Services
+
+```javascript
+var feathers = require('feathers');
+var bodyParser = require('body-parser');
+
+var app = feathers()
+  .use(bodyParser.json())
+  .use('/', feathers.static(__dirname))
+  .configure(feathers.rest())
+  .configure(feathers.socketio())
+  .use('/todos', {
+    find: function(params, callback) {},
+    get: function(id, params, callback) {},
+    create: function(data, params, callback) {},
+    update: function(id, data, params, callback) {},
+    patch: function(id, data, params, callback) {},
+    remove: function(id, params, callback) {}
+  });
+
+app.listen(8080);
+```
+
+--
+
+## A MongoDB REST and real-time API
 
 10 lines, no generators, no magic
 
@@ -99,38 +165,12 @@ app.service('todos').create({
 
 --
 
-## Services
-
-```javascript
-var feathers = require('feathers');
-
-var app = feathers()
-  .configure(feathers.rest())
-  .configure(feathers.socketio())
-  .use('/todos', {
-    // GET /todos | socket.emit('todos::find')
-    find: function(params, callback) {},
-    // GET /todos/:id | socket.emit('todos::get')
-    get: function(id, params, callback) {},
-    // POST /todos | socket.emit('todos::create')
-    create: function(data, params, callback) {},
-    // PUT /todos/:id | socket.emit('todos::update')
-    update: function(id, data, params, callback) {},
-    // PATCH /todos/:id | socket.emit('todos::patch')
-    patch: function(id, data, params, callback) {},
-    // DELETE /todos/:id | socket.emit('todos::remove')
-    remove: function(id, params, callback) {}
-  }).use('/', express.static(__dirname));
-app.listen(3000);
-```
-
---
-
 ## Client use
 
-[feathers-client]() is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS servers, with libraries like [jQuery]() or client side frameworks like [React](), [Angular]() or [CanJS]():
+[feathers-client](https://github.com/feathersjs/feathers-client) is a JavaScript client that connects to REST or real-time Feathers services. Use it on other NodeJS servers, with libraries like [jQuery](http://feathersjs.github.io/todomvc/feathers/jquery/#/all) or client side frameworks like React, Angular or CanJS:
 
 ```javascript
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 <script src="socket.io/socket.io.js"></script>
 <script src="node_modules/feathers-client/dist/feathers.js"></script>
 <script type="text/javascript">
@@ -149,11 +189,11 @@ app.listen(3000);
 </script>
 ```
 
---
+-- centered
 
 ## Real-time proxy for existing APIs
 
-<img src="img/real-time-proxy.png" alt="Real time proxy" style="width: 80%; margin: 0 auto; display: block;">
+<img src="img/real-time-proxy.png" alt="Real time proxy" style="width: 80%;">
 
 --
 
@@ -165,11 +205,15 @@ app.listen(3000);
 
 --
 
-# So what will the future be like?
+# Demo: A voice controlled shopping list
 
 --
 
-<img style="width: 40%; display: block; margin: 0 auto;" alt="Grace Hopper" src="img/grace-hopper.jpg" />
+# Programming the future
+
+-- centered
+
+<img style="width: 40%;" alt="Grace Hopper" src="img/grace-hopper.jpg" />
 
 --
 
@@ -221,3 +265,7 @@ rl.question("Enter First Number", num1 => {
   });
 });
 ```
+
+--
+
+# More teaching. Less coding.
