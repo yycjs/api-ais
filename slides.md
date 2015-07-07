@@ -75,13 +75,15 @@ logo: theme/logo.png
 
 -- presenter
 
-![SAM](http://gravatar.com/avatar/a14850281f19396480bdba4aab2d52ef?s=200)
+![SAM](img/sam.png)
 
 ## SAM
 
 * [<i class="fa fa-github"></i> daffl/samjs.ai](https://github.com/daffl/samjs.ai)
 
 -- centered
+
+### Built with...
 
 ## [![Feathers logo](img/feathers-logo.png)](http://feathersjs.com)
 
